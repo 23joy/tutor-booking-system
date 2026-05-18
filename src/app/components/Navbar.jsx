@@ -11,6 +11,7 @@ const Navbar = () => {
             <div className='flex gap-2'>
                 <Link href={'/home'}>Home</Link>
                 <Link href={'/tutors'}>Tutors</Link>
+                <Link href={'/addTuitors'}>AddTutors</Link>
             </div>
             <div className='flex gap-2'>
                 <Button variant='outline' className={'rounded-none'}>
