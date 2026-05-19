@@ -1,0 +1,61 @@
+"use client";
+
+import { Envelope } from "@gravity-ui/icons";
+import { Button, Input, Label, Modal, Surface, TextField } from "@heroui/react";
+
+export function EditModal({ tutor }) {
+    const onSubmit = async (e) => {
+        e.preventDefault()
+        const formData = new FormData(e.currentTarget)
+        const tutors = Object.fromEntries(formData.entries())
+        console.log(tutors)
+    }
+    return (
+        <Modal>
+            <Button variant='outline'>Book Session</Button>
+            <Modal.Backdrop>
+                <Modal.Container placement="auto">
+                    <Modal.Dialog className="sm:max-w-md">
+                        <Modal.CloseTrigger />
+                        <Modal.Header>
+
+                            <Modal.Heading>Book Session</Modal.Heading>
+                            <p className="mt-1.5 text-sm leading-5 text-muted">
+                                Make changes to your profile here.Click save when you're done.
+                            </p>
+                        </Modal.Header>
+                        <Modal.Body className="p-6">
+                            <Surface variant="default">
+                                <form  onSubmit={onSubmit} className="flex flex-col gap-4">
+                                    <TextField className="w-full" name="name" type="text">
+                                        <Label>Name</Label>
+                                        <Input placeholder="Enter your name" />
+                                    </TextField>
+
+                                    <TextField className="w-full" name="phone" type="tel">
+                                        <Label>Phone Number</Label>
+                                        <Input placeholder="017XX-XXXXXX" />
+                                    </TextField>
+                                    <TextField className="w-full" name="tutor">
+                                        <Label>Tutor Name</Label>
+                                        <Input placeholder="Enter your Tutor name" />
+                                    </TextField>
+                                    <TextField className="w-full" name="email">
+                                        <Label>Email</Label>
+                                        <Input placeholder="Enter your Email" type="email" />
+                                    </TextField>
+                                    <Modal.Footer>
+                                        <Button slot="close" variant="secondary">
+                                            Cancel
+                                        </Button>
+                                        <Button type="submit" slot="close">Confirm Booking</Button>
+                                    </Modal.Footer>
+                                </form>
+                            </Surface>
+                        </Modal.Body>
+                    </Modal.Dialog>
+                </Modal.Container>
+            </Modal.Backdrop>
+        </Modal>
+    );
+}

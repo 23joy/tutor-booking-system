@@ -24,7 +24,7 @@ const Tutors = ({ tutor }) => {
                     <p>Session Start Date : {tutor?.startDate}</p>
                     <p>Fee:${tutor?.fee}/hr</p>
                 </div>
-                <Link href={`/tutorDetails/${tutor._id}`}>
+                <Link href={`/tutors/${tutor._id}`}>
                     <Button className={'w-full'}>Book Session</Button>
 
                 </Link>

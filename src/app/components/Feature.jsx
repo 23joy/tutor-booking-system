@@ -23,7 +23,7 @@ const Feature = ({feature}) => {
                     <p>Session Start Date : {feature?.startDate}</p>
                     <p>Fee:${feature?.fee}/hr</p>
                 </div>
-                <Link href={`/tutorDetails/${feature._id}`}>
+                <Link href={`/tutors/${feature._id}`}>
                     <Button className={'w-full'}>Book Session</Button>
 
                 </Link>
