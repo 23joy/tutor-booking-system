@@ -3,28 +3,27 @@ import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react';
 
-const Tutors = ({ tutor }) => {
-    console.log(tutor)
+const Feature = ({feature}) => {
     return (
         <Card>
             <div className='relative w-full aspect-square max-w-[70vh] mx-auto'>
-                <Image src={tutor?.imageUrl}
-                    alt={tutor?.name}
+                <Image src={feature?.imageUrl}
+                    alt={feature?.name}
                     fill
                     className='object-cover'
                 />
             </div>
             <div className='space-y-3'>
                 <div>
-                    <h2 className='font-bold text-xl'>{tutor?.name}</h2>
-                    <p className='text-gray-700'>{tutor?.category}</p>
+                    <h2 className='font-bold text-xl'>{feature?.name}</h2>
+                    <p className='text-gray-700'>{feature?.category}</p>
                 </div>
                 <div className='text-gray-700'>
-                    <p>{tutor?.location}</p>
-                    <p>Session Start Date : {tutor?.startDate}</p>
-                    <p>Fee:${tutor?.fee}/hr</p>
+                    <p>{feature?.location}</p>
+                    <p>Session Start Date : {feature?.startDate}</p>
+                    <p>Fee:${feature?.fee}/hr</p>
                 </div>
-                <Link href={`/tutorDetails/${tutor._id}`}>
+                <Link href={`/tutorDetails/${feature._id}`}>
                     <Button className={'w-full'}>Book Session</Button>
 
                 </Link>
@@ -33,4 +32,4 @@ const Tutors = ({ tutor }) => {
     );
 };
 
-export default Tutors;
+export default Feature;
