@@ -8,8 +8,8 @@ const Navbar = () => {
             <div>
                 <h2 className='font-extrabold text-3xl'>MediQueue</h2>
             </div>
-            <div className='flex gap-2'>
-                <Link href={'/home'}>Home</Link>
+            <div className='flex gap-5'>
+                <Link href={'/'}>Home</Link>
                 <Link href={'/tutors'}>Tutors</Link>
                 <Link href={'/addTuitors'}>AddTutors</Link>
             </div>

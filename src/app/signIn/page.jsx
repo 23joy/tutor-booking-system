@@ -1,13 +1,20 @@
 'use client'
 import { Button, Card, Description, FieldError, Fieldset, Form, Input, Label, TextField } from '@heroui/react';
+import { Icon } from '@iconify/react';
+import Link from 'next/link';
 import React from 'react';
-import { LuLogIn } from 'react-icons/lu';
 
-const page = () => {
+const SignInPage = () => {
+    const onSubmit=async(e)=>{
+        e.preventDefault();
+        const fromData=new FormData(e.currentTarget)
+        const user=Object.fromEntries(fromData.entries())
+        console.log(user)
+    }
     return (
         <Card className='max-w-2xl mx-auto mt-10'>
             <h2 className='text-center p-5 font-bold text-2xl'>Login Now</h2>
-            <Form>
+            <Form onSubmit={onSubmit}>
                 <Fieldset className="w-full">
                     <Fieldset.Group>
                         <TextField isRequired name="email" type="email">
@@ -42,13 +49,19 @@ const page = () => {
                     </Fieldset.Group>
 
                     <Fieldset.Actions className='flex flex-col'>
+                        <li className={'w-full hover:bg-separator-secondary p-2 rounded-2xl text-center'}>
+                            Forgotten Password?
+                        </li>
                         <Button type="submit" className={'w-full'}>
                             <LuLogIn />
                             Login
                         </Button>
-                        <li className={'w-full hover:bg-separator-secondary p-2 rounded-2xl text-center'}>
-                            Forgotten Password?
-                        </li>
+                        <p>Or continue with</p>
+                        <Button  className="w-full m-2 rounded-none" variant="tertiary">
+                            <Icon icon="devicon:google" />
+                            Sign in with Google
+                        </Button>
+                        <p>Dont't have an account? <Link href={'signUp'} className='text-blue-400 font-bold'>Register now</Link> </p>
                     </Fieldset.Actions>
                 </Fieldset>
             </Form>
@@ -56,4 +69,4 @@ const page = () => {
     );
 };
 
-export default page;
+export default SignInPage;

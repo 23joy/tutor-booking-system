@@ -1,19 +1,39 @@
 'use client'
 import { FieldError, Input, Label, TextField, Select, ListBox, TextArea, Button } from "@heroui/react";
 import React from 'react';
+import { toast } from "react-toastify";
 
 const page = () => {
+
+    const onSubmit=async(e)=>{
+        e.preventDefault()
+        const formData = new FormData(e.currentTarget)
+        const tutors=Object.fromEntries(formData.entries())
+        const res=await fetch("http://localhost:7002/tutor",{
+            method:"POST",
+            headers:{
+                'content-type':'application/json'
+            },
+            body:JSON.stringify(tutors)
+        })
+        const data=await res.json();
+        if(data){
+            toast.success("the data added successfully");
+            return
+        }
+    }
     return (
         <div>
             <form
+            onSubmit={onSubmit}
                 className="p-10 space-y-8"
             >
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                     {/* Tutor Name */}
                     <div className="md:col-span-2">
-                        <TextField name="destinationName" isRequired>
+                        <TextField name="name" isRequired>
                             <Label>Tutor Name</Label>
-                            <Input placeholder="Tutor name" className="rounded-2xl" />
+                            <Input placeholder="Tutor name" className="rounded-none" />
                             <FieldError />
                         </TextField>
                     </div>
@@ -24,7 +44,7 @@ const page = () => {
                             <Input
                                 type="url"
                                 placeholder="tutor.jpg"
-                                className="rounded-2xl"
+                                className="rounded-none"
                             />
                             <FieldError />
                         </TextField>
@@ -74,22 +94,28 @@ const page = () => {
                     </div>
 
                     {/* Available Days and time */}
+                    <TextField name="day_times" isRequired>
+                        <Label>Available Days and time</Label>
+                        <Input placeholder="Sun - Thu 5:00 PM - 8:00 PM" className={'rounded-noen'}></Input>
+
+                    </TextField>
 
 
                     {/* Country */}
                     <TextField name="fee" isRequired>
                         <Label>Hourly fee</Label>
-                        <Input placeholder="Amount" className="rounded-2xl" />
+
+                        <Input placeholder="Amount" className="rounded-none" />
                         <FieldError />
                     </TextField>
 
                     {/* Price */}
-                    <TextField name="price" type="number" isRequired>
+                    <TextField name="slot" type="number" isRequired>
                         <Label>Total slot</Label>
                         <Input
                             type="number"
                             placeholder="3"
-                            className="rounded-2xl"
+                            className="rounded-none"
                         />
                         <FieldError />
                     </TextField>
@@ -97,9 +123,9 @@ const page = () => {
 
                     {/* Session start Date */}
                     <div className="md:col-span-2">
-                        <TextField name="departureDate" type="date" isRequired>
+                        <TextField name="startDate" type="date" isRequired>
                             <Label>Session Start</Label>
-                            <Input type="date" className="rounded-2xl" />
+                            <Input type="date" className="rounded-none" />
                             <FieldError />
                         </TextField>
                     </div>
@@ -111,7 +137,7 @@ const page = () => {
                             <Label>Institution $ Experience</Label>
                             <TextArea
                                 placeholder="institution and experience"
-                                className="rounded-3xl"
+                                className="rounded-none"
                             />
                             <FieldError />
                         </TextField>
@@ -121,7 +147,7 @@ const page = () => {
                             <Label>Location</Label>
                             <TextArea
                                 placeholder="Area/City"
-                                className="rounded-3xl"
+                                className="rounded-none"
                             />
                             <FieldError />
                         </TextField>
