@@ -1,15 +1,34 @@
 'use client'
+import { authClient } from '@/lib/auth-client';
 import { Button, Card, Description, FieldError, Fieldset, Form, Input, Label, TextField } from '@heroui/react';
 import { Icon } from '@iconify/react';
 import Link from 'next/link';
+import { redirect } from 'next/navigation';
 import React from 'react';
+import { LuLogIn } from 'react-icons/lu';
 
 const SignInPage = () => {
-    const onSubmit=async(e)=>{
+    const onSubmit = async (e) => {
         e.preventDefault();
-        const fromData=new FormData(e.currentTarget)
-        const user=Object.fromEntries(fromData.entries())
+        const fromData = new FormData(e.currentTarget)
+        const user = Object.fromEntries(fromData.entries())
         console.log(user)
+        const { data, error } = await authClient.signIn.email({
+            email: user.email,
+            password: user.password,
+        })
+        //console.log({ data, error })
+
+        // const { data: tokenData } = await authClient.token()
+        // console.log(tokenData)
+        if (data) {
+            redirect('/')
+        }
+    }
+    const handleGoogleSingIn = async () => {
+        await authClient.signIn.social({
+            provider: "google"
+        });
     }
     return (
         <Card className='max-w-2xl mx-auto mt-10'>
@@ -57,11 +76,11 @@ const SignInPage = () => {
                             Login
                         </Button>
                         <p>Or continue with</p>
-                        <Button  className="w-full m-2 rounded-none" variant="tertiary">
+                        <Button onClick={handleGoogleSingIn} className="w-full m-2 rounded-none" variant="tertiary">
                             <Icon icon="devicon:google" />
                             Sign in with Google
                         </Button>
-                        <p>Dont't have an account? <Link href={'signUp'} className='text-blue-400 font-bold'>Register now</Link> </p>
+                        <p>Dont have an account? <Link href={'signUp'} className='text-blue-400 font-bold'>Register now</Link> </p>
                     </Fieldset.Actions>
                 </Fieldset>
             </Form>

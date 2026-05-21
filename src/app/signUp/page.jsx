@@ -18,13 +18,32 @@ import {
 import { FcRegisteredTrademark } from 'react-icons/fc';
 import Link from 'next/link';
 import { Icon } from '@iconify/react';
+import { authClient } from '@/lib/auth-client';
+import { redirect } from 'next/navigation';
+import { toast } from 'react-toastify';
 
 const SignUpPage = () => {
-    const onSubmit=async(e)=>{
+    const onSubmit = async (e) => {
         e.preventDefault();
-        const fromData=new FormData(e.currentTarget)
-        const user=Object.fromEntries(fromData.entries())
+        const fromData = new FormData(e.currentTarget)
+        const user = Object.fromEntries(fromData.entries())
         console.log(user)
+        const { data, error } = await authClient.signUp.email({
+            email: user.email,
+            password: user.password,
+            name: user.name,
+            image: user.image,
+        })
+        // console.log({ data, error })
+        if (data) {
+            redirect('/')
+        }
+
+    };
+    const handleGoogleSingIn = async () => {
+        await authClient.signIn.social({
+            provider: "google"
+        });
     }
     return (
         <Card className='max-w-2xl mx-auto mt-10'>
@@ -94,15 +113,16 @@ const SignUpPage = () => {
                             Register
                         </Button>
                         <p>Or continue with</p>
-                        <Button  className="w-full m-2 rounded-none" variant="tertiary">
+                        <Button onClick={handleGoogleSingIn} className="w-full m-2 rounded-none" variant="tertiary">
                             <Icon icon="devicon:google" />
                             Sign in with Google
                         </Button>
                         <p>Aleready have an account? <Link href={'signIn'} className='text-blue-400 font-bold'> Sign In</Link> </p>
-
                     </Fieldset.Actions>
                 </Fieldset>
             </Form>
+
+
         </Card>
     );
 };

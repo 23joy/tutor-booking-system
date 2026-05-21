@@ -4,7 +4,7 @@ import { Envelope } from "@gravity-ui/icons";
 import { Button, FieldError, Input, Label, Modal, Surface, TextField,Select, ListBox, TextArea } from "@heroui/react";
 import { BiEdit } from "react-icons/bi";
 
-export function EditModal({ tutor }) {
+export function EditBookSession({ tutor }) {
     const onSubmit = async (e) => {
         e.preventDefault()
         const formData = new FormData(e.currentTarget)
@@ -22,7 +22,7 @@ export function EditModal({ tutor }) {
 
                             <Modal.Heading>Book Session</Modal.Heading>
                             <p className="mt-1.5 text-sm leading-5 text-muted">
-                                Make changes to your profile here.Click save when you're done.
+                                Make changes to your profile here.Click save when youre done.
                             </p>
                         </Modal.Header>
                         <Modal.Body className="p-6">

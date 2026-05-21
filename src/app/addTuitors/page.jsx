@@ -1,5 +1,6 @@
 'use client'
 import { FieldError, Input, Label, TextField, Select, ListBox, TextArea, Button } from "@heroui/react";
+import { redirect } from "next/navigation";
 import React from 'react';
 import { toast } from "react-toastify";
 
@@ -8,17 +9,19 @@ const page = () => {
     const onSubmit=async(e)=>{
         e.preventDefault()
         const formData = new FormData(e.currentTarget)
-        const tutors=Object.fromEntries(formData.entries())
-        const res=await fetch("http://localhost:7002/tutor",{
+        const addtutors=Object.fromEntries(formData.entries())
+        const res=await fetch("http://localhost:7002/addtutor",{
             method:"POST",
             headers:{
                 'content-type':'application/json'
             },
-            body:JSON.stringify(tutors)
+            body:JSON.stringify(addtutors)
         })
         const data=await res.json();
+        toast.success("the data added successfully");
         if(data){
-            toast.success("the data added successfully");
+            redirect('/')
+            
             return
         }
     }

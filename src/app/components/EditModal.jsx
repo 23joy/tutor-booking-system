@@ -1,14 +1,35 @@
 "use client";
 
+import { authClient } from "@/lib/auth-client";
 import { Envelope } from "@gravity-ui/icons";
 import { Button, Input, Label, Modal, Surface, TextField } from "@heroui/react";
+import { redirect } from "next/navigation";
+import { toast } from "react-toastify";
 
 export function EditModal({ tutor }) {
+    const {data: session,} = authClient.useSession()
+        const user = session?.user
+        console.log(user)
     const onSubmit = async (e) => {
         e.preventDefault()
+        
         const formData = new FormData(e.currentTarget)
-        const tutors = Object.fromEntries(formData.entries())
-        console.log(tutors)
+        const bookingData = Object.fromEntries(formData.entries())
+        bookingData.userId=user?.id
+    
+       
+        const res=await fetch("http://localhost:7002/booking",{
+                method:'POST',
+                headers:{
+                    'content-type':'application/json'
+                },
+                body:JSON.stringify(bookingData)
+            })
+        const data=await res.json()
+        toast.success("Booking is succesfully")
+        if(data){
+            redirect('/myBooking')
+        }
     }
     return (
         <Modal>
