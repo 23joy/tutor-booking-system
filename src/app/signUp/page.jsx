@@ -1,6 +1,5 @@
 'use client'
 import React from 'react';
-import { FloppyDisk } from "@gravity-ui/icons";
 
 import {
     Button,

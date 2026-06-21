@@ -1,13 +1,13 @@
 "use client";
 
 import { authClient } from "@/lib/auth-client";
-import { Envelope } from "@gravity-ui/icons";
+
 import { Button, Input, Label, Modal, Surface, TextField } from "@heroui/react";
 import { redirect } from "next/navigation";
 import { toast } from "react-toastify";
 
 export function EditModal({ tutor }) {
-    const {data: session,} = authClient.useSession()
+    const {data: session} = authClient.useSession()
         const user = session?.user
         console.log(user)
     const onSubmit = async (e) => {
@@ -18,7 +18,7 @@ export function EditModal({ tutor }) {
         bookingData.userId=user?.id
     
        
-        const res=await fetch("http://localhost:7002/booking",{
+        const res=await fetch(`${process.env.SURVER_URI}/bookings`,{
                 method:'POST',
                 headers:{
                     'content-type':'application/json'
@@ -42,7 +42,7 @@ export function EditModal({ tutor }) {
 
                             <Modal.Heading>Book Session</Modal.Heading>
                             <p className="mt-1.5 text-sm leading-5 text-muted">
-                                Make changes to your profile here.Click save when you're done.
+                                Make changes to your profile here.Click save when youre done.
                             </p>
                         </Modal.Header>
                         <Modal.Body className="p-6">

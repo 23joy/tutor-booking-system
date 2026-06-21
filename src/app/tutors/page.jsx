@@ -4,13 +4,13 @@ import React from 'react';
 import Tutors from '../components/Tutors';
 
 const TutorPage = async () => {
-    const res = await fetch(`${process.env.SURVER_URI}/tutor`)
+    const res = await fetch(`${process.env.SURVER_URI}/tutors`)
     const tutors = await res.json();
     console.log(tutors)
     return (
         <div className=' max-w-[80%] mx-auto'>
             <h2 className='text-center font-extrabold text-3xl p-5'>All Tutors</h2>
-            <div className='grid grid-cols-4 gap-6'>
+            <div className='grid grid-cols-4 gap-6 items-center'>
                 <TextField>
                     <Label>Search Tutor</Label>
                     <Input placeholder='search tutor by name...'></Input>

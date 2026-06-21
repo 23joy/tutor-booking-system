@@ -12,13 +12,13 @@ const MyBookingPage = async () => {
 
     const user = session.user;
     console.log(user)
-    const res = await fetch(`${process.env.SURVER_URI}/booking/${user?.id}`)
+    const res = await fetch(`${process.env.SURVER_URI}/bookings/${user?.id}`)
     const bookings = await res.json()
     console.log(bookings)
     return (
         <div>
-            <h2>MY BOOKING</h2>
-            <div>
+            <h2 className='text-center font-bold m-10'>MY BOOKING</h2>
+            <div className='container gap-3 mx-auto'>
                 <Table variant="secondary">
                     <Table.ScrollContainer>
                         <Table.Content aria-label="Team members" className="min-w-[600px]">
@@ -32,8 +32,8 @@ const MyBookingPage = async () => {
                             </Table.Header>
                             <Table.Body>
                                 {
-                                    bookings.map(booking =>
-                                        <Table.Row key={booking.userId}>
+                                    bookings.map((booking) =>
+                                        <Table.Row key={booking._id}>
                                             <Table.Cell>{booking.name}</Table.Cell>
                                             <Table.Cell>{booking. phone}</Table.Cell>
                                             <Table.Cell>{booking.tutor}</Table.Cell>

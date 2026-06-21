@@ -4,13 +4,15 @@ import { redirect } from "next/navigation";
 import React from 'react';
 import { toast } from "react-toastify";
 
+
+
 const page = () => {
 
     const onSubmit=async(e)=>{
         e.preventDefault()
         const formData = new FormData(e.currentTarget)
         const addtutors=Object.fromEntries(formData.entries())
-        const res=await fetch("http://localhost:7002/addtutor",{
+        const res=await fetch(`${process.env.SURVER_URI}/tutor`,{
             method:"POST",
             headers:{
                 'content-type':'application/json'
@@ -21,7 +23,6 @@ const page = () => {
         toast.success("the data added successfully");
         if(data){
             redirect('/')
-            
             return
         }
     }

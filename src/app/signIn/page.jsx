@@ -17,10 +17,10 @@ const SignInPage = () => {
             email: user.email,
             password: user.password,
         })
-        //console.log({ data, error })
+      
 
-        // const { data: tokenData } = await authClient.token()
-        // console.log(tokenData)
+         const { data: tokenData } = await authClient.token()
+       
         if (data) {
             redirect('/')
         }

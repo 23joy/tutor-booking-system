@@ -1,10 +1,8 @@
 'use client'
 import { authClient } from "@/lib/auth-client";
-import { ArrowRightFromSquare, Gear, Persons } from "@gravity-ui/icons";
-import { Avatar, Button, Dropdown, FieldError, Input, Label, Surface, TextField } from "@heroui/react";
+import { Avatar, Button, Dropdown, Input, Label, Surface, TextField } from "@heroui/react";
 
 export function ProfileDropDown({ user }) {
-    console.log(user)
     
     const handleLogOut = async (e) => {
         await authClient.signOut();

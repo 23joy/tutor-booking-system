@@ -13,7 +13,7 @@ const TutorIdDetails = async ({ params }) => {
     console.log(token);
     const res = await fetch(`${process.env.SURVER_URI}/tutors/${id}`,{
         headers:{
-            authorization:`Bearer${token}`
+            authorization:`Bearer ${token}`
         }
     })
     const tutor = await res.json();

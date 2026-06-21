@@ -1,18 +1,21 @@
 "use client";
 
+import { authClient } from "@/lib/auth-client";
 import {AlertDialog, Button} from "@heroui/react";
 
 export function DeleteBookingAlert({booking}) {
 
     const handleDeleteBooking=async()=>{
-        const res=await fetch(`http://localhost:7002/booking/${booking}`,{
+      const{data:tokenData}=await authClient.token()
+        const res=await fetch(`${process.env.SURVER_URI}/bookings/${booking}`,{
             method:"DELETE",
             headers:{
-                'content-type':'application/json'
+                'content-type':'application/json',
+                authorization:`Bearer ${tokenData?.token}`
             }
         })
         const data=await res.json()
-        console.log(data)
+        // console.log(data)
         window.location.reload();
     }
   return (
@@ -33,7 +36,7 @@ export function DeleteBookingAlert({booking}) {
               </p>
             </AlertDialog.Body>
             <AlertDialog.Footer>
-              <Button slot="close" variant="tertiary">
+              <Button slot="close"  variant="tertiary">
                 Cancel
               </Button>
               <Button onClick={handleDeleteBooking} slot="close" variant="danger">
