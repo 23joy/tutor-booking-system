@@ -17,7 +17,7 @@ const TutorIdDetails = async ({ params }) => {
         }
     })
     const tutor = await res.json();
-    console.log(tutor)
+    //console.log(tutor)
     return (
         <Card className="relative max-w-5xl mx-auto overflow-hidden rounded-[30px] border border-white/30 bg-white/70 backdrop-blur-xl shadow-xl">
 

@@ -45,9 +45,9 @@ const Navbar = () => {
     </>
 
     return (
-        <div className='flex justify-between items-center container mx-auto p-5 bg-gray-100 rounded-xl'>
+        <div className='flex justify-between items-center container mx-auto p-5 bg-background rounded-xl'>
             <div>
-                <h2 className='font-extrabold text-3xl'>MediQueue</h2>
+                <h2 className='font-extrabold text-3xl bg-gradient-to-r from-fuchsia-600 to-cyan-600  bg-clip-text text-transparent'>MediQueue</h2>
             </div>
             <div className=' gap-5 items-center hidden md:flex '>
                 {links}

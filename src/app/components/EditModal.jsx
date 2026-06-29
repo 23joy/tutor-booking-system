@@ -4,32 +4,35 @@ import { authClient } from "@/lib/auth-client";
 
 import { Button, Input, Label, Modal, Surface, TextField } from "@heroui/react";
 import { redirect } from "next/navigation";
+
 import { toast } from "react-toastify";
 
 export function EditModal({ tutor }) {
     const {data: session} = authClient.useSession()
         const user = session?.user
-        console.log(user)
+        
+        
     const onSubmit = async (e) => {
         e.preventDefault()
         
         const formData = new FormData(e.currentTarget)
         const bookingData = Object.fromEntries(formData.entries())
         bookingData.userId=user?.id
-    
-       
-        const res=await fetch(`${process.env.SURVER_URI}/bookings`,{
+
+        // const {token}=await authClient.getToken();
+        const res=await fetch('http://localhost:7002/bookings',{
                 method:'POST',
                 headers:{
-                    'content-type':'application/json'
+                    'content-type':'application/json',
+                    // authorization: `Bearer ${token}`,
                 },
                 body:JSON.stringify(bookingData)
             })
         const data=await res.json()
-        toast.success("Booking is succesfully")
-        if(data){
-            redirect('/myBooking')
-        }
+        console.log(data)
+       if(data){
+        redirect('/myBooking')
+       }
     }
     return (
         <Modal>

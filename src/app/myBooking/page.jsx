@@ -9,15 +9,21 @@ const MyBookingPage = async () => {
         headers: await headers()
 
     })
-
     const user = session.user;
-    console.log(user)
-    const res = await fetch(`${process.env.SURVER_URI}/bookings/${user?.id}`)
+
+    const { token } = await auth.api.getToken({
+        headers: await headers()
+    })
+    const res = await fetch(`${process.env.SURVER_URI}/bookings/${user?.id}`, {
+        headers: {
+            authorization: `Bearer ${token}`,
+        }
+    })
     const bookings = await res.json()
     console.log(bookings)
     return (
         <div>
-            <h2 className='text-center font-bold m-10'>MY BOOKING</h2>
+            <h2 className='text-center font-bold  mt-5'>MY BOOKING</h2>
             <div className='container gap-3 mx-auto'>
                 <Table variant="secondary">
                     <Table.ScrollContainer>
@@ -27,21 +33,26 @@ const MyBookingPage = async () => {
                                 <Table.Column>phone</Table.Column>
                                 <Table.Column>Tutor Name</Table.Column>
                                 <Table.Column>Email</Table.Column>
-                                <Table.Column>Status</Table.Column>
+                                <Table.Column>Delete</Table.Column>
+                                
+                                
+                                
 
                             </Table.Header>
                             <Table.Body>
                                 {
                                     bookings.map((booking) =>
-                                        <Table.Row key={booking._id}>
-                                            <Table.Cell>{booking.name}</Table.Cell>
-                                            <Table.Cell>{booking. phone}</Table.Cell>
-                                            <Table.Cell>{booking.tutor}</Table.Cell>
-                                            <Table.Cell>{booking.email}</Table.Cell>
+                                        <Table.Row key={booking?._id}>
+                                            <Table.Cell>{booking?.name}</Table.Cell>
+                                            <Table.Cell>{booking?.phone}</Table.Cell>
+                                            <Table.Cell>{booking?.tutor}</Table.Cell>
+                                            <Table.Cell>{booking?.email}</Table.Cell>
+                                            
+
                                             <Table.Cell>
-                                                <DeleteBookingAlert booking={booking._id}></DeleteBookingAlert>
+                                                <DeleteBookingAlert booking={booking?._id}></DeleteBookingAlert>
                                             </Table.Cell>
-                                            <Table.Cell><Button variant='outline' className={'bg-red-100 rounded-2xl text-red-400'}>X</Button></Table.Cell>
+                                            {/* <Table.Cell><Button variant='outline' className={'bg-red-100 rounded-2xl text-red-400'}>X</Button></Table.Cell> */}
                                         </Table.Row>
                                     )
                                 }

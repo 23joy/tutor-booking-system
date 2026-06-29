@@ -9,7 +9,7 @@ const Featured = async () => {
     
     const res = await fetch(`${process.env.SURVER_URI}/featured`)
     const featured = await res.json()
-    console.log(featured);
+    //console.log(featured);
     return (
         <div className='max-w-[95%] mx-auto m-10'>
             <h2 className='text-2xl font-bold text-center m-10'>TUtors</h2>

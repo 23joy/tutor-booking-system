@@ -6,7 +6,7 @@ import Tutors from '../components/Tutors';
 const TutorPage = async () => {
     const res = await fetch(`${process.env.SURVER_URI}/tutors`)
     const tutors = await res.json();
-    console.log(tutors)
+    
     return (
         <div className=' max-w-[80%] mx-auto'>
             <h2 className='text-center font-extrabold text-3xl p-5'>All Tutors</h2>

@@ -10,7 +10,7 @@ export const metadata = {
 };
 
 const Tutors = ({ tutor }) => {
-    console.log(tutor)
+    //console.log(tutor)
     return (
         <Card className="group relative overflow-hidden rounded-[28px] border border-white/30 bg-white/70 backdrop-blur-xl shadow-lg hover:shadow-fuchsia-200/40 transition-all duration-500">
 

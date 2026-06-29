@@ -7,7 +7,7 @@ export function DeleteBookingAlert({booking}) {
 
     const handleDeleteBooking=async()=>{
       const{data:tokenData}=await authClient.token()
-        const res=await fetch(`${process.env.SURVER_URI}/bookings/${booking}`,{
+        const res=await fetch(`http://localhost:7002/bookings/${booking}`,{
             method:"DELETE",
             headers:{
                 'content-type':'application/json',
