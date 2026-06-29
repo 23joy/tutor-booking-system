@@ -1,6 +1,11 @@
 
 import React from 'react';
-import { Table } from '@heroui/react';
+import { Button, Card, Table } from '@heroui/react';
+import { CiEdit } from 'react-icons/ci';
+import { TiDeleteOutline } from 'react-icons/ti';
+import { EditModal } from '../components/EditTutor';
+import DeleteTutor from '../components/DeleteTutor';
+import { FaAddressBook } from 'react-icons/fa';
 
 
 export const metadata = {
@@ -11,49 +16,57 @@ export const metadata = {
 
 
 const MyTutorPage = async () => {
-    const res = await fetch("http://localhost:7002/addtutor")
+    const res = await fetch(`${process.env.SURVER_URI}/addtutor`)
     const tutor = await res.json()
     console.log(tutor)
     return (
         <div className='max-x-7xl mx-auto px-4 py-6'>
             <h2 className='text-center text-2xl md:text-3xl font-bold mb-5'>My Tutor page</h2>
-            <div className='container gap-3 mx-auto'>
-                <Table variant="secondary">
-                    <Table.ScrollContainer>
-                        <Table.Content aria-label="Team members" className="min-w-[400px]">
-                            <Table.Header>
-                                <Table.Column isRowHeader>Tutor Name</Table.Column>
-                                <Table.Column>Subject</Table.Column>
-                                <Table.Column>Available</Table.Column>
-                                <Table.Column>Hourly Fee</Table.Column>
-                                <Table.Column>Total Slot</Table.Column>
-                                <Table.Column>Registration Date</Table.Column>
-                                <Table.Column>Action</Table.Column>
+            {tutor.length > 0 ? <>
+                <div className='container gap-3 mx-auto'>
+                    <Table variant="secondary">
+                        <Table.ScrollContainer>
+                            <Table.Content aria-label="Team members" className="min-w-[400px]">
+                                <Table.Header>
+                                    <Table.Column isRowHeader>Tutor Name</Table.Column>
+                                    <Table.Column>Subject</Table.Column>
+                                    <Table.Column>Available</Table.Column>
+                                    <Table.Column>Hourly Fee</Table.Column>
+                                    <Table.Column>Total Slot</Table.Column>
+                                    <Table.Column>Registration Date</Table.Column>
+                                    <Table.Column>Action</Table.Column>
 
-                            </Table.Header>
-                            <Table.Body>
-                                {
-                                    tutor.map((tutor) =>
-                                        <Table.Row key={tutor?._id}>
-                                            <Table.Cell>{tutor?.name}</Table.Cell>
-                                            <Table.Cell>{tutor?.category}</Table.Cell>
-                                            <Table.Cell>{tutor?.day_times}</Table.Cell>
-                                            <Table.Cell>{tutor?.fee}</Table.Cell>
-                                            <Table.Cell>{tutor?.slot}</Table.Cell>
-                                            <Table.Cell>{tutor?.startDate}</Table.Cell>
+                                </Table.Header>
+                                <Table.Body>
+                                    {
+                                        tutor.map((tutor) =>
+                                            <Table.Row key={tutor?._id}>
+                                                <Table.Cell>{tutor?.name}</Table.Cell>
+                                                <Table.Cell>{tutor?.category}</Table.Cell>
+                                                <Table.Cell>{tutor?.day_times}</Table.Cell>
+                                                <Table.Cell>{tutor?.fee}</Table.Cell>
+                                                <Table.Cell>{tutor?.slot}</Table.Cell>
+                                                <Table.Cell>{tutor?.startDate}</Table.Cell>
 
-                                            <Table.Cell>
-                                               
-                                            </Table.Cell>
-                                            {/* <Table.Cell><Button variant='outline' className={'bg-red-100 rounded-2xl text-red-400'}>X</Button></Table.Cell> */}
-                                        </Table.Row>
-                                    )
-                                }
-                            </Table.Body>
-                        </Table.Content>
-                    </Table.ScrollContainer>
-                </Table>
-            </div>
+                                                <Table.Cell className={'flex gap-2'}>
+                                                    <EditModal tutor={tutor}></EditModal>
+                                                    <DeleteTutor tutor={tutor}></DeleteTutor>
+                                                </Table.Cell>
+                                                {/* <Table.Cell><Button variant='outline' className={'bg-red-100 rounded-2xl text-red-400'}>X</Button></Table.Cell> */}
+                                            </Table.Row>
+                                        )
+                                    }
+                                </Table.Body>
+                            </Table.Content>
+                        </Table.ScrollContainer>
+                    </Table>
+                </div>
+            </>:<>
+            <Card className='text-center p-20 m-5 bg-gradient-to-r from-fuchsia-500 to-cyan-500'>
+                <h2 className='text-4xl'>Tutors Not Available <br /></h2>
+                <p className='text-background'>Add new tutors</p>
+            </Card>
+            </>}
         </div>
     );
 };

@@ -7,7 +7,7 @@ export function DeleteBookingAlert({booking}) {
 
     const handleDeleteBooking=async()=>{
       const{data:tokenData}=await authClient.token()
-        const res=await fetch(`http://localhost:7002/bookings/${booking}`,{
+        const res=await fetch(`${process.env.SURVER_URI}/bookings/${booking}`,{
             method:"DELETE",
             headers:{
                 'content-type':'application/json',
@@ -20,7 +20,7 @@ export function DeleteBookingAlert({booking}) {
     }
   return (
     <AlertDialog>
-      <Button variant='outline' className={'bg-red-100 rounded-2xl text-red-400'}>Cancelled</Button>
+      <Button variant='outline' className={'bg-red-100 rounded-2xl text-red-400'}>Cancel</Button>
       <AlertDialog.Backdrop>
         <AlertDialog.Container>
           <AlertDialog.Dialog className="sm:max-w-[400px]">

@@ -25,7 +25,7 @@ export function EditModal({ tutor }) {
         
 
          const {token}=await authClient.getToken();
-        const res=await fetch('http://localhost:7002/bookings',{
+        const res=await fetch(`${process.env.SURVER_URI}/bookings`,{
                 method:'POST',
                 headers:{
                     'content-type':'application/json',
