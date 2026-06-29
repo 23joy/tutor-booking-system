@@ -22,8 +22,8 @@ const MyBookingPage = async () => {
     const bookings = await res.json()
     console.log(bookings)
     return (
-        <div>
-            <h2 className='text-center font-bold  mt-5'>MY BOOKING</h2>
+        <div className='max-x-7xl mx-auto px-4 py-6'>
+            <h2 className='text-center text-2xl md:text-3xl font-bold  mt-5'>MY BOOKING</h2>
             <div className='container gap-3 mx-auto'>
                 <Table variant="secondary">
                     <Table.ScrollContainer>
@@ -33,6 +33,7 @@ const MyBookingPage = async () => {
                                 <Table.Column>phone</Table.Column>
                                 <Table.Column>Tutor Name</Table.Column>
                                 <Table.Column>Email</Table.Column>
+                                <Table.Column>status</Table.Column>
                                 <Table.Column>Delete</Table.Column>
                                 
                                 
@@ -47,6 +48,7 @@ const MyBookingPage = async () => {
                                             <Table.Cell>{booking?.phone}</Table.Cell>
                                             <Table.Cell>{booking?.tutor}</Table.Cell>
                                             <Table.Cell>{booking?.email}</Table.Cell>
+                                            <Table.Cell>{booking?.mode}</Table.Cell>
                                             
 
                                             <Table.Cell>

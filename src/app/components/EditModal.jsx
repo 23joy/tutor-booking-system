@@ -8,6 +8,7 @@ import { redirect } from "next/navigation";
 import { toast } from "react-toastify";
 
 export function EditModal({ tutor }) {
+
     const {data: session} = authClient.useSession()
         const user = session?.user
         
@@ -17,20 +18,25 @@ export function EditModal({ tutor }) {
         
         const formData = new FormData(e.currentTarget)
         const bookingData = Object.fromEntries(formData.entries())
-        bookingData.userId=user?.id
+        bookingData.userId=user?.id;
+        bookingData.tutorId=tutor?._id;
+        bookingData.Name=tutor?.name;
+        bookingData.mode=tutor?.mode;
+        
 
-        // const {token}=await authClient.getToken();
+         const {token}=await authClient.getToken();
         const res=await fetch('http://localhost:7002/bookings',{
                 method:'POST',
                 headers:{
                     'content-type':'application/json',
-                    // authorization: `Bearer ${token}`,
+                     authorization: `Bearer ${token}`,
                 },
                 body:JSON.stringify(bookingData)
             })
         const data=await res.json()
         console.log(data)
        if(data){
+        toast.success("the tutor booking successfully")
         redirect('/myBooking')
        }
     }
@@ -55,14 +61,13 @@ export function EditModal({ tutor }) {
                                         <Label>Name</Label>
                                         <Input placeholder="Enter your name" />
                                     </TextField>
-
                                     <TextField className="w-full" name="phone" type="tel">
                                         <Label>Phone Number</Label>
                                         <Input placeholder="017XX-XXXXXX" />
                                     </TextField>
                                     <TextField className="w-full" name="tutor">
                                         <Label>Tutor Name</Label>
-                                        <Input placeholder="Enter your Tutor name" />
+                                        <Input placeholder="Enter your Tutor name"  value={tutor?.name}/>
                                     </TextField>
                                     <TextField className="w-full" name="email">
                                         <Label>Email</Label>
