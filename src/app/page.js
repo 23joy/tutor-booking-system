@@ -9,10 +9,10 @@ export default function Home() {
   return (
     <main>
       <Banner></Banner>
-    
-    <Featured></Featured>
-    <ChooseMedi></ChooseMedi>
-    <MediQueueWorks></MediQueueWorks>
+
+      <Featured></Featured>
+      <ChooseMedi></ChooseMedi>
+      <MediQueueWorks></MediQueueWorks>
     </main>
   );
 }

@@ -6,14 +6,8 @@ import { auth } from '@/lib/auth';
 import { headers } from 'next/headers';
 
 const Featured = async () => {
-    const { token } = await auth.api.getToken({
-        headers: await headers()
-    })
-    const res = await fetch(`${process.env.SURVER_URI}/featured`, {
-        headers: {
-            authorization: `Bearer ${token}`
-        }
-    })
+    
+    const res = await fetch(`${process.env.SURVER_URI}/featured`)
     const featured = await res.json()
     console.log(featured);
     return (

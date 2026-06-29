@@ -28,7 +28,7 @@ const MyBookingPage = async () => {
                                 <Table.Column>Tutor Name</Table.Column>
                                 <Table.Column>Email</Table.Column>
                                 <Table.Column>Status</Table.Column>
-                                <Table.Column>Cancel</Table.Column>
+
                             </Table.Header>
                             <Table.Body>
                                 {

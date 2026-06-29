@@ -8,7 +8,7 @@ import { useState, useEffect } from 'react'
 
 const Navbar = () => {
     const { data: session } = authClient.useSession()
-    //console.log(session)
+    
     const user = session?.user
 
     const [theme, setTheme] = useState('light')
