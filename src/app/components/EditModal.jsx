@@ -65,9 +65,9 @@ export function EditModal({ tutor }) {
                                         <Label>Phone Number</Label>
                                         <Input placeholder="017XX-XXXXXX" />
                                     </TextField>
-                                    <TextField className="w-full" name="tutor">
+                                    <TextField className="w-full" name="tutor" defaultValue={tutor?.name}>
                                         <Label>Tutor Name</Label>
-                                        <Input placeholder="Enter your Tutor name"  value={tutor?.name}/>
+                                        <Input placeholder="Enter your Tutor name"  />
                                     </TextField>
                                     <TextField className="w-full" name="email">
                                         <Label>Email</Label>
