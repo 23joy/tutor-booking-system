@@ -16,7 +16,7 @@ export const metadata = {
 
 
 const MyTutorPage = async () => {
-    const res = await fetch(`${process.env.SURVER_URI}/addtutor`)
+    const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URI}/addtutor`)
     const tutor = await res.json()
     console.log(tutor)
     return (

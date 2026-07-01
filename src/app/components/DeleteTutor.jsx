@@ -6,8 +6,10 @@ import { TiDeleteOutline } from 'react-icons/ti';
 
 const DeleteTutor = ({tutor}) => {
     const handleDeleteTutor=async()=>{
+
           const{data:tokenData}=await authClient.token()
-            const res=await fetch(`${process.env.SURVER_URI}/addtutor/${tutor._id}`,{
+          
+            const res=await fetch(`${process.env.NEXT_PUBLIC_SERVER_URI}/addtutor/${tutor._id}`,{
                 method:"DELETE",
                 headers:{
                     'content-type':'application/json',

@@ -4,7 +4,7 @@ import React from 'react';
 import Tutors from '../components/Tutors';
 
 const TutorPage = async () => {
-    const res = await fetch(`${process.env.SURVER_URI}/tutors`)
+    const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URI}/tutors`)
     const tutors = await res.json();
     
     return (

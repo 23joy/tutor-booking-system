@@ -11,7 +11,7 @@ export function EditModal({tutor}) {
         const addtutors = Object.fromEntries(formData.entries())
         console.log(addtutors)
 
-        const res=await fetch(`${process.env.SURVER_URI}/addtutor/${tutor._id}`,{
+        const res=await fetch(`${process.env.NEXT_PUBLIC_SERVER_URI}/addtutor/${tutor._id}`,{
             method:'PATCH',
             headers:{
                 'content-type':'application/json'

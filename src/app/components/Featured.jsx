@@ -7,7 +7,7 @@ import { headers } from 'next/headers';
 
 const Featured = async () => {
     
-    const res = await fetch(`${process.env.SURVER_URI}/featured`)
+    const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URI}/featured`)
     const featured = await res.json()
     //console.log(featured);
     return (

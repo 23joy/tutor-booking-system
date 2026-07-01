@@ -11,7 +11,7 @@ const TutorIdDetails = async ({ params }) => {
         headers:await headers()
     })
     //console.log(token);
-    const res = await fetch(`${process.env.SURVER_URI}/tutors/${id}`,{
+    const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URI}/tutors/${id}`,{
         headers:{
             authorization:`Bearer ${token}`
         }

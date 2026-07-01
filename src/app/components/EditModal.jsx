@@ -7,29 +7,28 @@ import { redirect } from "next/navigation";
 
 import { toast } from "react-toastify";
 
-export function EditModal({ tutor }) {
-
+export function EditModal({ tutor }) {  
     const {data: session} = authClient.useSession()
-        const user = session?.user
-        
+    const user = session?.user 
+
         
     const onSubmit = async (e) => {
         e.preventDefault()
-        
+           
         const formData = new FormData(e.currentTarget)
         const bookingData = Object.fromEntries(formData.entries())
         bookingData.userId=user?.id;
         bookingData.tutorId=tutor?._id;
         bookingData.Name=tutor?.name;
         bookingData.mode=tutor?.mode;
-        
 
-         const {token}=await authClient.getToken();
-        const res=await fetch(`${process.env.SURVER_URI}/bookings`,{
+        const { data: tokenData } = await authClient.token();
+
+        const res=await fetch(`${process.env.NEXT_PUBLIC_SERVER_URI}/bookings`,{
                 method:'POST',
                 headers:{
                     'content-type':'application/json',
-                     authorization: `Bearer ${token}`,
+                     authorization: `Bearer ${tokenData?.token}`,
                 },
                 body:JSON.stringify(bookingData)
             })

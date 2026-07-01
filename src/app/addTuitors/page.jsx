@@ -12,7 +12,7 @@ const page = () => {
         e.preventDefault()
         const formData = new FormData(e.currentTarget)
         const addtutors=Object.fromEntries(formData.entries())
-        const res=await fetch(`${process.env.SURVER_URI}/tutor`,{
+        const res=await fetch(`${process.env.NEXT_PUBLIC_SERVER_URI}/addtutor`,{
             method:"POST",
             headers:{
                 'content-type':'application/json'
