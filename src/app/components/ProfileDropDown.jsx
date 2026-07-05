@@ -1,9 +1,11 @@
 'use client'
 import { authClient } from "@/lib/auth-client";
+import { ArrowRightFromSquare, Gear, Person } from "@gravity-ui/icons";
 import { Avatar, Button, Dropdown, Input, Label, Surface, TextField } from "@heroui/react";
+import { Link } from "lucide-react";
 
 export function ProfileDropDown({ user }) {
-    
+
     const handleLogOut = async (e) => {
         await authClient.signOut();
     }
@@ -31,33 +33,9 @@ export function ProfileDropDown({ user }) {
                         </div>
                     </div>
                 </div>
-                <Surface variant="default">
-                    <form className="flex flex-col gap-4 p-10">
-                        <TextField className="w-full" name="name" type="text" variant="secondary">
-                            <Label>Name</Label>
-                            <Input placeholder="Enter your name" />
-                        </TextField>
-                        <TextField
-                            name="image"
-                            type='url'
-                        >
-                            <Label>Photo_URL</Label>
-                            <Input placeholder='Your image url' variant='secondary' className={'rounded-none'} />
-                        </TextField>
-                        <TextField className="w-full" name="email" type="email" variant="secondary">
-                            <Label>Email</Label>
-                            <Input placeholder="Enter your email" />
-                        </TextField>
-                        <TextField className="w-full" name="phone" type="tel" variant="secondary">
-                            <Label>Phone</Label>
-                            <Input placeholder="Enter your phone number" />
-                        </TextField>
-                        <div className="flex justify-between">
-                            <Button onClick={handleLogOut} variant="danger">LogOut</Button>
-                            <Button >Update</Button>
-                        </div>
-                    </form>
-                </Surface>
+                <div className="p-5 flex justify-between items-center">
+                    <Button onClick={handleLogOut}>Log Out <ArrowRightFromSquare className="size-3.5 text-danger" /></Button>
+                </div>
             </Dropdown.Popover>
         </Dropdown>
     );

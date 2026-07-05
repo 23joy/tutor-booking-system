@@ -32,7 +32,7 @@ const Tutors = ({ tutor }) => {
 
 
                 <div>
-                    <h2 className="text-2xl font-bold text-gray-800 group-hover:text-fuchsia-600 transition">
+                    <h2 className="text-2xl font-bold text-gray-800 group-hover:#872759 transition">
                         {tutor?.name}
                     </h2>
                     <p className="text-sm text-gray-500">{tutor?.category}</p>

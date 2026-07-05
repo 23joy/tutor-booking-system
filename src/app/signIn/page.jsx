@@ -6,6 +6,7 @@ import Link from 'next/link';
 import { redirect } from 'next/navigation';
 import React from 'react';
 import { LuLogIn } from 'react-icons/lu';
+import { toast } from 'react-toastify';
 
 const SignInPage = () => {
     const onSubmit = async (e) => {
@@ -17,12 +18,13 @@ const SignInPage = () => {
             email: user.email,
             password: user.password,
         })
-      
-
-         const { data: tokenData } = await authClient.token()
-       
         if (data) {
+            toast.success("SignIn successfully");
             redirect('/')
+        }
+        else if(error){
+            toast.error("SingIn is Not successfully")
+            return
         }
     }
     const handleGoogleSingIn = async () => {
@@ -31,14 +33,23 @@ const SignInPage = () => {
         });
     }
     return (
-        <Card className='max-w-2xl mx-auto mt-10'>
-            <h2 className='text-center p-5 font-bold text-2xl'>Login Now</h2>
+        <Card className='max-w-2xl mx-auto mt-10 w-full max-w-md rounded-3xl border border-white/30
+        bg-white/80 backdrop-blur-xl shadow-2xl p-8'>
+            <h2 className='text-3xl font-bold text-center bg-gradient-to-r
+            from-fuchsia-600 via-purple-600 to-cyan-500
+            bg-clip-text text-transparent'>Login Now</h2>
             <Form onSubmit={onSubmit}>
                 <Fieldset className="w-full">
                     <Fieldset.Group>
                         <TextField isRequired name="email" type="email">
                             <Label>Email</Label>
-                            <Input placeholder="john@example.com" variant="secondary" className={'rounded-none'} />
+                            <Input placeholder="john@example.com"
+                                variant="secondary"
+                                className={'rounded-none'}
+                                classNames={{
+                                    inputWrapper:
+                                        "border border-gray-200 hover:border-fuchsia-400 focus-within:border-cyan-500 transition-all",
+                                }} />
                             <FieldError />
                         </TextField>
 

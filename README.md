@@ -1,9 +1,15 @@
 ## Project Name:
 MediQueue
+
+## live site URL:
+
+
 ## Features:
 - BetterAuth Authentication system(signIn/signUp)
 - CRUD operation
 - API integration
+- Jwt 
+- 
 
 ## 🛠️ Tech Stack
 

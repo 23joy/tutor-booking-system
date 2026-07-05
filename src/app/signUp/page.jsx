@@ -33,9 +33,14 @@ const SignUpPage = () => {
             name: user.name,
             image: user.image,
         })
-        // console.log({ data, error })
+
         if (data) {
+            toast.success("SignUp successfully");
             redirect('/')
+        }
+        else if (error) {
+            toast.error("SingUp is Not successfully")
+            return
         }
 
     };
@@ -45,8 +50,11 @@ const SignUpPage = () => {
         });
     }
     return (
-        <Card className='max-w-2xl mx-auto mt-10'>
-            <h2 className='text-center p-5 font-bold text-2xl'>Register Now</h2>
+        <Card className='max-w-2xl mx-auto mt-10 w-full max-w-md rounded-3xl border border-white/30
+        bg-white/80 backdrop-blur-xl shadow-2xl p-8'>
+            <h2 className='text-3xl font-bold text-center bg-gradient-to-r
+            from-fuchsia-600 via-purple-600 to-cyan-500
+            bg-clip-text text-transparent'>Register Now</h2>
             <Form onSubmit={onSubmit}>
                 <Fieldset className="w-full">
                     <Fieldset.Group>

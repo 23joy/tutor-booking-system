@@ -1,4 +1,5 @@
 import { FaLinkedin, FaTwitter } from "react-icons/fa";
+import { FaXTwitter } from "react-icons/fa6";
 import { IoIosMail } from "react-icons/io";
 
 const Footer = () => {
@@ -59,7 +60,7 @@ const Footer = () => {
           </p>
 
           <div className="flex gap-5 mt-4 md:mt-0 text-white text-lg">
-            <span className="cursor-pointer"><FaTwitter/></span>
+            <span className="cursor-pointer"><FaXTwitter/></span>
             <span className="cursor-pointer"><FaLinkedin/></span>
             <span className="cursor-pointer"><IoIosMail/></span>
           </div>

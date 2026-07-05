@@ -3,13 +3,16 @@ import { Button, Card, Table } from '@heroui/react';
 import { headers } from 'next/headers';
 import React from 'react';
 import { DeleteBookingAlert } from '../components/DeleteBookingAlert';
+import { redirect } from 'next/navigation';
 
 const MyBookingPage = async () => {
     const session = await auth.api.getSession({
         headers: await headers()
-
     })
-    const user = session.user;
+    if(!session){
+        redirect("/signIn")
+    }
+    const user = session?.user;
 
     const { token } = await auth.api.getToken({
         headers: await headers()
@@ -22,13 +25,15 @@ const MyBookingPage = async () => {
     const bookings = await res.json()
     console.log(bookings)
     return (
-        <div className='max-w-7xl mx-auto px-4 py-6'>
-            <h2 className='text-center text-xl font-bold  mt-5'>MY BOOKING</h2>
+        <div className='w-full max-w-4xl mx-auto overflow-x-auto'>
+            <h2 className=' mb-5 text-center text-xl font-bold  mt-5 bg-gradient-to-r
+            from-fuchsia-600 via-purple-600 to-cyan-500
+            bg-clip-text text-transparent'>MY BOOKING</h2>
             {bookings.length > 0 ? <>
-                <div className='max-w-7xl gap-3 mx-auto'>
+                <div className='max-w-4xl gap-3 mx-auto px-4'>
                     <Table variant="secondary">
                         <Table.ScrollContainer>
-                            <Table.Content aria-label="Team members" className="min-w-[600px]">
+                            <Table.Content aria-label="Team members" className="min-w-[500px] md:min-w-[650px] lg:min-w-[700px]">
                                 <Table.Header>
                                     <Table.Column isRowHeader>Name</Table.Column>
                                     <Table.Column>phone</Table.Column>

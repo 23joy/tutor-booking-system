@@ -22,12 +22,13 @@ const page = () => {
         const data=await res.json();
         toast.success("the data added successfully");
         if(data){
-            redirect('/')
+            redirect('/myTutors')
             return
         }
     }
     return (
-        <div>
+        <div className="max-w-2xl mx-auto mt-10 w-full max-w-md rounded-3xl border border-white/30
+        bg-white/80 backdrop-blur-xl shadow-2xl p-8">
             <form
             onSubmit={onSubmit}
                 className="p-10 space-y-8"

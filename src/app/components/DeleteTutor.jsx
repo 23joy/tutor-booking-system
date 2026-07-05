@@ -17,22 +17,22 @@ const DeleteTutor = ({tutor}) => {
                 }
             })
             const data=await res.json()
-            // console.log(data)
+    
             window.location.reload();
         }
     return (
          <AlertDialog>
-              <Button variant='outline'><TiDeleteOutline /></Button>
+              <Button variant='danger' className={'w-12 h-12 rounded-2xl bg-gradient-to-r from-fuchsia-600 via-purple-500 to-cyan-500 flex items-center justify-center text-white'}><TiDeleteOutline /></Button>
               <AlertDialog.Backdrop>
                 <AlertDialog.Container>
                   <AlertDialog.Dialog className="sm:max-w-[400px]">
                     <AlertDialog.CloseTrigger />
                     <AlertDialog.Header>
                       <AlertDialog.Icon status="danger" />
-                      <AlertDialog.Heading>Delete Booking permanently?</AlertDialog.Heading>
+                      <AlertDialog.Heading className='text-2xl font-bold bg-gradient-to-r from-fuchsia-600 via-purple-500 to-cyan-500 bg-clip-text text-transparent'>Delete Booking permanently?</AlertDialog.Heading>
                     </AlertDialog.Header>
                     <AlertDialog.Body>
-                      <p>
+                      <p className='text-sm text-gray-500'>
                         This will permanently delete <strong className="font-bold text-xl">{tutor?.name}</strong> and all of its
                         data. This action cannot be undone.
                       </p>

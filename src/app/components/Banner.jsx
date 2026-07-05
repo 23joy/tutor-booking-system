@@ -8,6 +8,7 @@ import 'swiper/css';
 import 'swiper/css/pagination';
 import Image from 'next/image';
 
+
 const slides = [
   {
     title: "Find & Book the Right Tutor Instantly",

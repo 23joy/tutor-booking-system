@@ -21,12 +21,14 @@ const MyTutorPage = async () => {
     console.log(tutor)
     return (
         <div className='max-x-7xl mx-auto px-4 py-6'>
-            <h2 className='text-center text-2xl md:text-3xl font-bold mb-5'>My Tutor page</h2>
+            <h2 className='text-center text-xl font-bold  mt-5 bg-gradient-to-r
+            from-fuchsia-600 via-purple-600 to-cyan-500
+            bg-clip-text text-transparent mb-5'>My Tutor page</h2>
             {tutor.length > 0 ? <>
-                <div className='container gap-3 mx-auto'>
-                    <Table variant="secondary">
-                        <Table.ScrollContainer>
-                            <Table.Content aria-label="Team members" className="min-w-[400px]">
+                <div className='max-w-4xl gap-3 mx-auto'>
+                    <Table variant="secondary" className={'border border-b-6'}>
+                        <Table.ScrollContainer >
+                            <Table.Content aria-label="tutor list" className="min-w-[400px]">
                                 <Table.Header>
                                     <Table.Column isRowHeader>Tutor Name</Table.Column>
                                     <Table.Column>Subject</Table.Column>
